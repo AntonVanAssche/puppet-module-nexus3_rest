@@ -5,7 +5,7 @@ def config = emailManager.getConfiguration();
 def info = [:]
 
 config.properties.findAll { it.key != 'class' && it.key != 'entityMetadata' }.each { key, value ->
-  info[toSnakeCase(key)] = value instanceof Boolean || value instanceof Integer ? value : ensureDefault(value, '')
+    info[toSnakeCase(key)] = value instanceof Boolean || value instanceof Integer ? value : ensureDefault(value.toString(), '')
 }
 
 return groovy.json.JsonOutput.toJson([info]);
